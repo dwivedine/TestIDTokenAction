@@ -23,6 +23,12 @@ jobs:
       
       - name: Use action to get ID Token
         uses: dwivedine/getIDToken-action@v1.1
+        with: 
+          client_id: "Redundant"
+          client_secret: "Redundant"
+          username: "Redundant"
+          password: "Redundant"
+          scope: "Redundant"
         id: tokenid
       
         
