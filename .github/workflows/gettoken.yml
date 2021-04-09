@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Use action to get ID Token
-        uses: dwivedine/getIDToken-action@getIDTokenv1.1
+        uses: dwivedine/getIDToken-action@v1.1
         id: tokenid
       
         
