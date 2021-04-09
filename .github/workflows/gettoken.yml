@@ -21,11 +21,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: Use action to get ID Token
-        uses: dwivedine/getIDToken@v1.0
-        id: tokenid
+      
         
       - name: Echo the ID token value
-        run: echo "The output is" steps.tokenid.outputs.id_token
+        run: echo "The output is" 
       
       
