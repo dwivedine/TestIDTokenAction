@@ -27,6 +27,6 @@ jobs:
       
         
       - name: Echo the ID token value
-        run: echo "The output is" steps.tokenid.outputs.id_token
+        run: echo "The output is" ${{ steps.tokenid.outputs.id_token }}
       
       
