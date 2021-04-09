@@ -7,7 +7,7 @@ name: Get ID Token from OIDC Provider
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,9 +21,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
+      - name: Use action to get ID Token
+        uses: dwivedine/getIDToken@v1.0
+        id: tokenid
       
         
       - name: Echo the ID token value
-        run: echo "The output is" 
+        run: echo "The output is" steps.tokenid.outputs.id_token
       
       
