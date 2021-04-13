@@ -1,1 +1,1 @@
-# TestIDTokenAction Hard coded values only
+# TestIDTokenAction Hard coded values
