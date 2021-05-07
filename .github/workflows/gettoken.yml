@@ -28,7 +28,7 @@ jobs:
           #  client_secret: "Redundant"
            # password: "Redundant"
             #scope: "Redundant"
-        uses: dwivedine/testAction@v1.0.0
+        uses: dwivedine/testAction@1.0.0
         id: tokenid
       
         
