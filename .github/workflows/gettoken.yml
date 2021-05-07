@@ -22,16 +22,17 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Use action to get ID Token
-        uses: dwivedine/getIDToken-action@v1.5
-        with: 
-          client_id: "Redundant"
-          client_secret: "Redundant"
-          password: "Redundant"
-          scope: "Redundant"
+        #uses: dwivedine/getIDToken-action@v1.5
+        #with: 
+         #   client_id: "Redundant"
+          #  client_secret: "Redundant"
+           # password: "Redundant"
+            #scope: "Redundant"
+        uses: dwivedine/testAction@v1.0.0
         id: tokenid
       
         
       - name: Echo the ID token value
-        run: echo "The output is" ${{ steps.tokenid.outputs.response_json }}
+        run: echo "The output is" ${{ steps.tokenid.outputs.body_string }}
       
       
