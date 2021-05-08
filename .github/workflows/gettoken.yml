@@ -36,5 +36,8 @@ jobs:
         
       - name: Echo the ID token value
         run: echo "The output is" ${{ steps.tokenid.outputs.body_string }}
+        
+      - name: environment
+        run: echo "the environment is " ${{ jobs.get-id.environment }}
       
       
