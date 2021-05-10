@@ -1,0 +1,59 @@
+name: CI
+env:
+  BUCKET_NAME : "neha-bucket123"
+  APP_NAME : "neha-app"
+  ENV_NAME : "Nehaapp-env"
+  PACKAGE_NAME : "neha-${{ github.sha }}.zip"
+  AWS_REGION : "us-east-2"
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  S3PackageUpload:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Create zip
+        run: zip -r ${{ env.PACKAGE_NAME }} ./ -x "*.git"
+          
+      # Get ID token
+      - name: Use action to get ID Token
+        uses: orgdwivedine/actionoidcclient@1.0.5
+        id: tokenid
+      
+      # Get credentials
+      - name: get temp credentials
+        run: echo ::set-output name=CREDENTIALS::$(aws sts assume-role-with-web-identity  --role-arn 'arn:aws:iam::151347512159:role/S3FullAccessV3-OIDCDemo' --role-session-name 'samplerolesession' --web-identity-token ${{steps.tokenid.outputs.id_token}} --query Credentials)
+        id: credentials
+        
+      - name: get access ID
+        run: echo ::set-output name=ACCESSID::$(echo '${{ steps.credentials.outputs.CREDENTIALS }}' | jq -rc '.AccessKeyId')
+        id: accessid
+        
+      - name: get access key
+        run: echo ::set-output name=ACCESSKEY::$(echo '${{ steps.credentials.outputs.CREDENTIALS }}' | jq -rc '.SecretAccessKey')
+        id: accesskey
+        
+      - name: get session token
+        run: echo ::set-output name=SESSIONTOKEN::$(echo '${{ steps.credentials.outputs.CREDENTIALS }}' | jq -rc '.SessionToken')
+        id: sessiontoken
+      
+      # Runs a set of commands using the runners shell
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ steps.accessid.outputs.ACCESSID }}
+          aws-secret-access-key: ${{ steps.accesskey.outputs.ACCESSKEY }}
+          aws-session-token: ${{ steps.sessiontoken.outputs.SESSIONTOKEN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name:  Copy package to s3
+        run: aws s3 cp ${{ env.PACKAGE_NAME }} s3://${{ env.BUCKET_NAME }}/
