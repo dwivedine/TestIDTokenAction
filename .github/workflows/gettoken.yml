@@ -30,12 +30,12 @@ jobs:
           #  client_secret: "Redundant"
            # password: "Redundant"
             #scope: "Redundant"
-        uses: orgdwivedine/actionoidcclient@1.0.1
+        uses: orgdwivedine/actionoidcclient@1.0.2
         id: tokenid
       
         
       - name: Echo the ID token value
-        run: echo "The output is" ${{ steps.tokenid.outputs.body_string }}
+        run: echo "The output is" ${{ steps.tokenid.outputs.id_token }}
         
       - name: Dump GitHub context
         env:
