@@ -30,7 +30,7 @@ jobs:
           #  client_secret: "Redundant"
            # password: "Redundant"
             #scope: "Redundant"
-        uses: orgdwivedine/actionoidcclient@1.0.3
+        uses: orgdwivedine/actionoidcclient@1.0.4
         id: tokenid
       
         
@@ -81,7 +81,7 @@ jobs:
           #  client_secret: "Redundant"
            # password: "Redundant"
             #scope: "Redundant"
-        uses: orgdwivedine/actionoidcclient@1.0.3
+        uses: orgdwivedine/actionoidcclient@1.0.4
         id: tokenid
       
         
