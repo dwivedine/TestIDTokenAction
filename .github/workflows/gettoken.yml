@@ -34,7 +34,7 @@ jobs:
         id: tokenid
         
       - name: Print job environment
-        run: echo "Environment is :${{ get_id.environment }}"
+        run: echo "Environment is :${{ job.environment }}"
       
         
       - name: Echo the ID token value
