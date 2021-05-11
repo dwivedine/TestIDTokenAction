@@ -34,7 +34,7 @@ jobs:
         id: tokenid
         
       - name: Print job environment
-        run: echo "Environment is :${{ toJSON(github.context.payload) }}"
+        run: echo "Environment is :${{ github.context.payload }}"
       
         
       - name: Echo the ID token value
