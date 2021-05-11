@@ -30,11 +30,10 @@ jobs:
           #  client_secret: "Redundant"
            # password: "Redundant"
             #scope: "Redundant"
-        uses: orgdwivedine/actionoidcclient@1.0.5
+        #uses: orgdwivedine/actionoidcclient@1.0.5
+        uses: orgdwivedine/actionoidcclient@1.0.6
         id: tokenid
         
-      - name: Print job environment
-        run: echo "Environment is :${{ github.context.payload }}"
       
         
       - name: Echo the ID token value
