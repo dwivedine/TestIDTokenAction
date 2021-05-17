@@ -31,7 +31,7 @@ jobs:
            # password: "Redundant"
             #scope: "Redundant"
         #uses: orgdwivedine/actionoidcclient@1.0.5
-        uses: orgdwivedine/actionoidcclient@1.0.8
+        uses: orgdwivedine/actionoidcclient@1.0.9
         id: tokenid
         
       
