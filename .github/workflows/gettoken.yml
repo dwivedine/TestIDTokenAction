@@ -31,7 +31,7 @@ jobs:
            # password: "Redundant"
             #scope: "Redundant"
         #uses: orgdwivedine/actionoidcclient@1.0.5
-        uses: orgdwivedine/actionoidcclient@1.0.9
+        uses: orgdwivedine/TS_GHOIDC_IDToken@1.0.0
         id: tokenid
         
       
@@ -39,78 +39,4 @@ jobs:
       - name: Echo the ID token value
         run: echo "The output is ${{ steps.tokenid.outputs.id_token }}"
         
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: Dump job context
-        env:
-          JOB_CONTEXT: ${{ toJSON(job) }}
-        run: echo "$JOB_CONTEXT"
-      - name: Dump steps context
-        env:
-          STEPS_CONTEXT: ${{ toJSON(steps) }}
-        run: echo "$STEPS_CONTEXT"
-      - name: Dump runner context
-        env:
-          RUNNER_CONTEXT: ${{ toJSON(runner) }}
-        run: echo "$RUNNER_CONTEXT"
-      - name: Dump strategy context
-        env:
-          STRATEGY_CONTEXT: ${{ toJSON(strategy) }}
-        run: echo "$STRATEGY_CONTEXT"
-      - name: Dump matrix context
-        env:
-          MATRIX_CONTEXT: ${{ toJSON(matrix) }}
-        run: echo "$MATRIX_CONTEXT"
       
-# This workflow contains a single job called "build"
-  get-id2:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    environment:
-      name: test
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      
-      - name: Use action to get ID Token
-        #uses: dwivedine/getIDToken-action@v1.5
-        #with: 
-         #   client_id: "Redundant"
-          #  client_secret: "Redundant"
-           # password: "Redundant"
-            #scope: "Redundant"
-        uses: orgdwivedine/actionoidcclient@1.0.5
-        id: tokenid
-      
-        
-      - name: Echo the ID token value
-        run: echo "The output is ${{ steps.tokenid.outputs.id_token }}"
-        
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: Dump job context
-        env:
-          JOB_CONTEXT: ${{ toJSON(job) }}
-        run: echo "$JOB_CONTEXT"
-      - name: Dump steps context
-        env:
-          STEPS_CONTEXT: ${{ toJSON(steps) }}
-        run: echo "$STEPS_CONTEXT"
-      - name: Dump runner context
-        env:
-          RUNNER_CONTEXT: ${{ toJSON(runner) }}
-        run: echo "$RUNNER_CONTEXT"
-      - name: Dump strategy context
-        env:
-          STRATEGY_CONTEXT: ${{ toJSON(strategy) }}
-        run: echo "$STRATEGY_CONTEXT"
-      - name: Dump matrix context
-        env:
-          MATRIX_CONTEXT: ${{ toJSON(matrix) }}
-        run: echo "$MATRIX_CONTEXT"
